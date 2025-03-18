@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADSR Store</title>
+    <script src="script.js" defer></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="min-h-screen bg-black text-white">
+    <!-- Sales Banner -->
+    <!-- Sales Banner -->
+    <div
+      id="salesBanner"
+      class="relative bg-gradient-to-r from-purple-600 to-fuchsia-500 hidden md:block"
+    >
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex flex-col md:flex-row items-center justify-center">
+          <p class="text-white font-medium text-center mb-2 md:mb-0">
+            Don't sleep on this TRAP Bundle - 12 Packs For $25 (3200 files
+            included)
+          </p>
+          <button
+            class="text-white hover:text-white/80 font-medium bg-white/20 hover:bg-white/30 transition-colors md:ml-4 px-4 py-2 rounded-md"
+          >
+            Shop Now
+          </button>
+        </div>
+        <!-- Close Button -->
+        <button
+          id="closeButton"
+          class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors"
+        >
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="md:hidden container mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <!-- Mobile Menu Button -->
+        <button
+          onclick="toggleMobileMenu()"
+          class="text-white p-2 hover:bg-zinc-800 rounded-md"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+
+        <!-- Logo -->
+        <div class="flex justify-center">
+          <img
+            src="https://www.adsrsounds.com/wp-content/themes/adsr/img/logo-v2.svg"
+            alt="ADSR Logo"
+            class="w-12 h-12 brightness-0 invert"
+          />
+        </div>
+
+        <!-- Cart Button -->
+        <button
+          onclick="toggleCart()"
+          class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-white"
+        >
+          $16.00
+        </button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="relative w-full mt-4">
+        <input
+          type="text"
+          placeholder="Search (Sounds) ..."
+          class="bg-zinc-900 border-none rounded-md pr-10 h-10 w-full px-4 text-white"
+        />
+        <svg
+          class="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          ></path>
+        </svg>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobileMenu"
+        class="hidden fixed inset-0 z-50 bg-black bg-opacity-50"
+      >
+        <div
+          class="fixed inset-y-0 left-0 w-[85%] max-w-[320px] bg-zinc-900 p-6"
+        >
+          <div class="flex justify-between items-center mb-6">
+            <img
+              src="https://www.adsrsounds.com/wp-content/themes/adsr/img/logo-v2.svg"
+              alt="ADSR Logo"
+              class="w-12 h-12 brightness-0 invert"
+            />
+            <button
+              onclick="toggleMobileMenu()"
+              class="text-white p-2 hover:bg-zinc-800 rounded-full"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="space-y-4">
+            <button
+              class="w-full text-left px-4 py-3 text-lg font-medium hover:bg-zinc-800 rounded-md"
+            >
+              SOUNDS
+            </button>
+            <button
+              class="w-full text-left px-4 py-3 text-lg font-medium hover:bg-zinc-800 rounded-md"
+            >
+              PLUGINS
+            </button>
+            <button
+              class="w-full text-left px-4 py-3 text-lg font-medium hover:bg-zinc-800 rounded-md"
+            >
+              COURSES
+            </button>
+            <button
+              class="w-full text-left px-4 py-3 text-lg font-medium hover:bg-zinc-800 rounded-md"
+            >
+              TUTORIALS
+            </button>
+            <button
+              class="w-full text-left px-4 py-3 text-lg font-medium hover:bg-zinc-800 rounded-md"
+            >
+              BUNDLES
+            </button>
+            <button
+              class="w-full text-left px-4 py-3 text-lg font-medium hover:bg-zinc-800 rounded-md"
+            >
+              SALE
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:block container mx-auto px-4 mb-4 mt-4">
+      <div class="flex items-center bg-black rounded-md h-[52px]">
+        <!-- Logo -->
+        <div class="px-4 h-full flex items-center">
+          <img
+            src="https://www.adsrsounds.com/wp-content/themes/adsr/img/logo-v2.svg"
+            alt="ADSR Logo"
+            class="w-12 h-12 brightness-0 invert"
+          />
+        </div>
+
+        <!-- Search -->
+        <div class="relative w-64 px-3 h-full flex items-center">
+          <input
+            type="text"
+            placeholder="Search (Sounds) ..."
+            class="bg-zinc-900 border-none rounded-md pr-10 h-9 w-full px-4 text-white"
+          />
+          <svg
+            class="absolute right-6 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </div>
+
+        <!-- Navigation Items -->
+        <div class="flex flex-1 h-full justify-center">
+          <div class="relative group">
+            <button
+              class="px-4 font-medium text-sm h-[42px] my-[5px] mx-1 flex items-center justify-center transition-colors duration-200 rounded-md bg-zinc-900 hover:bg-zinc-800"
+            >
+              SOUNDS
+            </button>
+            <!-- Dropdown Menu -->
+            <div
+              class="hidden group-hover:block absolute left-86 z-50 top-full pt-2"
+              style="width: 900px; margin-left: -450px"
+            >
+              <div class="w-full p-4 bg-zinc-900 rounded-md shadow-lg">
+                <div class="flex">
+                  <!-- Left Side Buttons -->
+                  <div class="w-48 space-y-2 pr-4 border-r border-zinc-800">
+                    <button
+                      class="w-full flex items-center gap-2 px-4 py-3 text-sm font-medium text-white hover:bg-zinc-800 rounded-md"
+                    >
+                      <svg
+                        class="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                        ></path>
+                      </svg>
+                      Genre
+                    </button>
+                    <button
+                      class="w-full flex items-center gap-2 px-4 py-3 text-sm font-medium text-white hover:bg-zinc-800 rounded-md"
+                    >
+                      <svg
+                        class="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                        ></path>
+                      </svg>
+                      Formats
+                    </button>
+                    <button
+                      class="w-full flex items-center gap-2 px-4 py-3 text-sm font-medium text-white hover:bg-zinc-800 rounded-md"
+                    >
+                      <svg
+                        class="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z"
+                        ></path>
+                      </svg>
+                      Labels
+                    </button>
+                  </div>
+
+                  <!-- Right Side Grid -->
+                  <div class="flex-1 pl-6">
+                    <div class="grid grid-cols-4 gap-6">
+                      <div>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Acon Digital
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Acoustica
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          ADSR
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Air Music Tech
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Akai
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Angelic Vibes
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Antares
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Apogee
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Applied Accoustic
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Aria Sounds
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Arturia
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Auburn
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Cubic Audio
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Cycles & Spots Software
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          D16
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Dark Silence
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          DDMF
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Denise Audio
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Deplike
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          DHPlugins
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Diginois
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Digital Brain Instruments
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          DiscoDSP
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          DJ Swivel
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          iZotope
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Kilohearts
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Klevgrand
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Korneff
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Krotos
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          KV331
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          LANDR
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          LiveLoop
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Loot Audio
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Luftrum
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Lunacy Audio
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Magix
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Sampleson
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Saucey Audio
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Serato
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Shout Audio
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Signum Audio
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Sinevibes
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Sinuslabs
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Sonible
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Sonivox
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Sonnox
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Sound Particles
+                        </button>
+                        <button
+                          class="w-full text-left px-2 py-1.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 rounded"
+                        >
+                          Soundiron
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="px-4 font-medium text-sm h-[42px] my-[5px] mx-1 flex items-center justify-center transition-colors duration-200 rounded-md hover:bg-zinc-900"
+          >
+            PLUGINS
+          </button>
+          <button
+            class="px-4 font-medium text-sm h-[42px] my-[5px] mx-1 flex items-center justify-center transition-colors duration-200 rounded-md hover:bg-zinc-900"
+          >
+            COURSES
+          </button>
+          <button
+            class="px-4 font-medium text-sm h-[42px] my-[5px] mx-1 flex items-center justify-center transition-colors duration-200 rounded-md hover:bg-zinc-900"
+          >
+            TUTORIALS
+          </button>
+          <button
+            class="px-4 font-medium text-sm h-[42px] my-[5px] mx-1 flex items-center justify-center transition-colors duration-200 rounded-md hover:bg-zinc-900"
+          >
+            BUNDLES
+          </button>
+          <button
+            class="px-4 font-medium text-sm h-[42px] my-[5px] mx-1 flex items-center justify-center transition-colors duration-200 rounded-md hover:bg-zinc-900"
+          >
+            SALE
+          </button>
+        </div>
+
+        <!-- User and Cart -->
+        <div class="flex items-center gap-3 px-4 h-full">
+          <div class="relative">
+            <button
+              onclick="toggleUserMenu()"
+              class="p-2 hover:bg-zinc-800 rounded-full"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
+            </button>
+            <div
+              id="userMenu"
+              class="hidden z-50 absolute right-0 mt-2 w-56 bg-zinc-900 rounded-md shadow-lg py-1"
+            >
+              <button
+                class="w-full text-left px-4 py-2 text-sm hover:bg-zinc-800"
+              >
+                Create an Account
+              </button>
+              <hr class="border-zinc-800 my-1" />
+              <button
+                class="w-full text-left px-4 py-2 text-sm hover:bg-zinc-800"
+              >
+                Sign In
+              </button>
+            </div>
+          </div>
+
+          <div class="relative z-50">
+            <button
+              onclick="toggleCart()"
+              class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md"
+            >
+              $16.00
+            </button>
+            <div
+              id="cart"
+              class="hidden absolute right-0 mt-2 w-80 bg-zinc-900 rounded-md shadow-lg p-4"
+            >
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-lg">Your Cart</h3>
+                <select class="bg-zinc-800 rounded-md px-2 py-1 text-sm">
+                  <option value="usd">USD</option>
+                  <option value="eur">EUR</option>
+                  <option value="gbp">GBP</option>
+                </select>
+              </div>
+
+              <div class="space-y-3 max-h-60 overflow-auto mb-4">
+                <div class="flex items-center gap-3 bg-zinc-800 p-2 rounded-md">
+                  <div
+                    class="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-md"
+                  ></div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-medium text-sm truncate">
+                      RETROWAVE Sample Pack
+                    </p>
+                    <p class="text-xs text-gray-400">Premium Edition</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-medium">$7.99</span>
+                    <button class="text-gray-400 hover:text-white">
+                      <svg
+                        class="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3 bg-zinc-800 p-2 rounded-md">
+                  <div
+                    class="w-12 h-12 bg-gradient-to-br from-green-500 to-yellow-400 rounded-md"
+                  ></div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-medium text-sm truncate">
+                      DRUM MACHINES Plugin
+                    </p>
+                    <p class="text-xs text-gray-400">Standard License</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-medium">$4.99</span>
+                    <button class="text-gray-400 hover:text-white">
+                      <svg
+                        class="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3 bg-zinc-800 p-2 rounded-md">
+                  <div
+                    class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-md"
+                  ></div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-medium text-sm truncate">
+                      LOFI & SYNTHWAVE Collection
+                    </p>
+                    <p class="text-xs text-gray-400">Full Bundle</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-medium">$3.02</span>
+                    <button class="text-gray-400 hover:text-white">
+                      <svg
+                        class="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="py-2 mb-4 border-t border-zinc-800">
+                <div class="flex justify-between mb-2">
+                  <span class="text-sm text-gray-400">Subtotal</span>
+                  <span class="font-medium">$16.00</span>
+                </div>
+                <div class="flex justify-between font-bold">
+                  <span>Total</span>
+                  <span>$16.00</span>
+                </div>
+              </div>
+
+              <button
+                class="w-full bg-green-500 hover:bg-green-600 py-2 rounded-md font-medium"
+              >
+                Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero section  -->
+    <div class="relative mb-12">
+      <!-- Background Image -->
+      <div
+        class="absolute inset-0 w-full h-full bg-cover bg-center"
+        style="
+          background-image: url('https://www.adsrsounds.com/wp-content/uploads/2025/03/website_bg1.png');
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
+
+      <div class="container mx-auto px-4 py-12 relative">
+        <!-- Heading -->
+        <h2
+          id="carouselHeading"
+          class="text-4xl font-bold text-center mb-12 text-white"
+        ></h2>
+
+        <!-- Carousel - Mobile view (single slide) -->
+        <div id="mobileCarousel" class="md:hidden">
+          <div class="max-w-[320px] mx-auto">
+            <div class="bg-zinc-900 rounded-lg overflow-hidden">
+              <!-- Product Image -->
+              <div class="relative aspect-square">
+                <img
+                  id="mobileImage"
+                  src=""
+                  alt=""
+                  class="w-full h-full object-cover"
+                />
+                <!-- Discount Badge -->
+                <div
+                  id="mobileBadge"
+                  class="absolute top-4 right-4 bg-gradient-to-r p-2 rounded-md text-white font-bold"
+                ></div>
+              </div>
+              <!-- Product Info -->
+              <div class="p-4">
+                <h3
+                  id="mobileTitle"
+                  class="text-xl font-bold text-white mb-1"
+                ></h3>
+                <p id="mobileManufacturer" class="text-sm text-gray-400"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel - Desktop view (multiple slides) -->
+        <div
+          id="desktopCarousel"
+          class="hidden md:flex items-center justify-center gap-6 max-w-6xl mx-auto"
+        ></div>
+
+        <!-- Navigation Buttons -->
+        <button
+          id="prevButton"
+          class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 rounded-full text-white hover:bg-black/50 p-2"
+        >
+          &lt;
+        </button>
+
+        <button
+          id="nextButton"
+          class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 rounded-full text-white hover:bg-black/50 p-2"
+        >
+          &gt;
+        </button>
+
+        <!-- Dots -->
+        <div id="dotsContainer" class="flex justify-center gap-2 mt-8"></div>
+      </div>
+    </div>
+    <!-- Category  -->
+    <div class="container mx-auto px-4 mb-16">
+      <!-- Category Buttons Grid -->
+      <div
+        id="categoryGrid"
+        class="grid grid-cols-2 md:grid-cols-5 gap-4"
+      ></div>
+    </div>
+    <!-- sample section  -->
+    <div class="container mx-auto px-4 mb-16">
+      <!-- Heading -->
+      <div class="text-center mb-8">
+        <h2 class="text-4xl font-bold mb-2">Find your sound</h2>
+        <p class="text-xl text-zinc-400">
+          The latest sample & preset packs this week
+        </p>
+      </div>
+
+      <!-- Desktop Controls -->
+      <div class="hidden md:flex justify-between items-center mb-8">
+        <div class="flex gap-4">
+          <select
+            class="w-[180px] bg-zinc-900 border-none rounded-md px-3 py-2 text-white"
+          >
+            <option value="all">All Genres</option>
+            <option value="electronic">Electronic</option>
+            <option value="hiphop">Hip Hop</option>
+            <option value="pop">Pop</option>
+          </select>
+
+          <select
+            class="w-[180px] bg-zinc-900 border-none rounded-md px-3 py-2 text-white"
+          >
+            <option value="all">All Formats</option>
+            <option value="wav">WAV</option>
+            <option value="midi">MIDI</option>
+            <option value="preset">Presets</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="prevSet" class="p-2 rounded-full hover:bg-zinc-800">
+            <i data-lucide="chevron-left" class="h-4 w-4"></i>
+          </button>
+          <button id="nextSet" class="p-2 rounded-full hover:bg-zinc-800">
+            <i data-lucide="chevron-right" class="h-4 w-4"></i>
+          </button>
+          <button class="px-4 py-2 rounded-md hover:bg-zinc-800 ml-2">
+            See All
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Controls -->
+      <div class="flex md:hidden justify-between items-center mb-6">
+        <button id="prevMobile" class="p-2 rounded-full hover:bg-zinc-800">
+          <i data-lucide="chevron-left" class="h-4 w-4"></i>
+        </button>
+        <button class="px-4 py-2 rounded-md hover:bg-zinc-800">See All</button>
+        <button id="nextMobile" class="p-2 rounded-full hover:bg-zinc-800">
+          <i data-lucide="chevron-right" class="h-4 w-4"></i>
+        </button>
+      </div>
+
+      <!-- Desktop Grid View -->
+      <div
+        id="desktopGrid"
+        class="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+      ></div>
+
+      <!-- Mobile Single Item View -->
+      <div id="mobileView" class="md:hidden"></div>
+    </div>
+
+    <!-- plugins section  -->
+    <div class="container mx-auto px-4 mb-16">
+      <!-- Heading -->
+      <div class="text-center mb-8">
+        <h2 class="text-4xl font-bold mb-2">The Latest Plugin Deals</h2>
+        <p class="text-xl text-zinc-400">Professional tools at exclusive prices</p>
+      </div>
+  
+      <!-- Desktop Controls -->
+      <div class="hidden md:flex justify-between items-center mb-8">
+        <div class="flex gap-4">
+          <select class="w-[180px] bg-zinc-900 border-none rounded-md px-3 py-2 text-white">
+            <option value="all">All Categories</option>
+            <option value="effects">Effects</option>
+            <option value="instruments">Instruments</option>
+            <option value="mixing">Mixing & Mastering</option>
+          </select>
+  
+          <select class="w-[180px] bg-zinc-900 border-none rounded-md px-3 py-2 text-white">
+            <option value="all">All Developers</option>
+            <option value="waves">Waves Audio</option>
+            <option value="ni">Native Instruments</option>
+            <option value="izotope">iZotope</option>
+          </select>
+        </div>
+  
+        <div class="flex items-center gap-2">
+          <button id="prevSet" class="p-2 rounded-full hover:bg-zinc-800">
+            <i data-lucide="chevron-left" class="h-4 w-4"></i>
+          </button>
+          <button id="nextSet" class="p-2 rounded-full hover:bg-zinc-800">
+            <i data-lucide="chevron-right" class="h-4 w-4"></i>
+          </button>
+          <button class="px-4 py-2 rounded-md hover:bg-zinc-800 ml-2">See All</button>
+        </div>
+      </div>
+  
+      <!-- Mobile Controls -->
+      <div class="flex md:hidden justify-between items-center mb-6">
+        <button id="prevMobile" class="p-2 rounded-full hover:bg-zinc-800">
+          <i data-lucide="chevron-left" class="h-4 w-4"></i>
+        </button>
+        <button class="px-4 py-2 rounded-md hover:bg-zinc-800">See All</button>
+        <button id="nextMobile" class="p-2 rounded-full hover:bg-zinc-800">
+          <i data-lucide="chevron-right" class="h-4 w-4"></i>
+        </button>
+      </div>
+  
+      <!-- Desktop Grid View -->
+      <div id="desktopGrid" class="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"></div>
+  
+      <!-- Mobile Single Item View -->
+      <div id="mobileView" class="md:hidden"></div>
+    </div>
+    <footer class="bg-black text-zinc-400 py-16">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          <!-- Logo Column -->
+          <div class="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col items-center md:items-start">
+            <img
+              src="https://www.adsrsounds.com/wp-content/themes/adsr/img/logo-v2.svg"
+              alt="ADSR Logo"
+              class="w-[70px] h-[70px] mb-6 brightness-0 invert"
+            />
+          </div>
+    
+          <!-- Features -->
+          <div class="lg:col-span-1">
+            <h3 class="text-white font-bold mb-4">Features</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-white transition-colors">Sounds</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Plugins</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Courses</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Tutorials</a></li>
+            </ul>
+          </div>
+    
+          <!-- ADSR Plugins -->
+          <div class="lg:col-span-1">
+            <h3 class="text-white font-bold mb-4">ADSR Plugins</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-white transition-colors">Sample Manager</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Drum Machine</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Hexcel</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">MIDIGRID</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Orbit</a></li>
+            </ul>
+          </div>
+    
+          <!-- Community -->
+          <div class="lg:col-span-1">
+            <h3 class="text-white font-bold mb-4">Community</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-white transition-colors">Facebook</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Instagram</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Youtube</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Discord</a></li>
+            </ul>
+          </div>
+    
+          <!-- Socials -->
+          <div class="lg:col-span-1">
+            <h3 class="text-white font-bold mb-4">Socials</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-white transition-colors">Facebook</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Instagram</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Youtube</a></li>
+            </ul>
+          </div>
+    
+          <!-- Company -->
+          <div class="lg:col-span-1">
+            <h3 class="text-white font-bold mb-4">Company</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-white transition-colors">About ADSR</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="mt-12 pt-8 border-t border-zinc-800 text-center md:text-left">
+          <p class="text-sm">© 2024 ADSR Ltd</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

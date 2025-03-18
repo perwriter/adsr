@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero Carousel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body class="bg-black text-white">
+    <div class="hero-wrapper">
+      <!-- Background Image -->
+      <div
+        class="hero-bg"
+        style="
+          background-image: url('https://www.adsrsounds.com/wp-content/uploads/2025/03/website_bg1.png');
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div></div>
+      </div>
+
+      <div class="hero-content">
+        <!-- Heading -->
+        <h2 id="carouselHeading"></h2>
+
+        <!-- Carousel - Mobile view (single slide) -->
+        <div id="mobileCarousel" class="hero-carousel-mobile">
+          <div class="hero-carousel-mobile-main">
+            <div class="hero-carousel-product">
+              <!-- Product Image -->
+              <div class="hero-mobile-image">
+                <img id="mobileImage" src="" alt="" />
+                <!-- Discount Badge -->
+                <div id="mobileBadge"></div>
+              </div>
+              <!-- Product Info -->
+              <div class="hero-mobile-info">
+                <h3 id="mobileTitle" class=""></h3>
+                <p id="mobileManufacturer" class="text-sm text-gray-400"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel - Desktop view (multiple slides) -->
+        <div id="desktopCarousel"></div>
+
+        <!-- Navigation Buttons -->
+        <button id="prevButton">&lt;</button>
+
+        <button id="nextButton">&gt;</button>
+
+        <!-- Dots -->
+        <div id="dotsContainer"></div>
+      </div>
+    </div>
+  </body>
+</html>

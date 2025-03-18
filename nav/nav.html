@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADSR Store</title>
+    <script src="script.js" defer></script>
+    <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="nav.css" />
+  </head>
+  <body class="">
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav-wrapper">
+      <div class="mobile-nav-menu">
+        <!-- Mobile Menu Button -->
+        <button onclick="toggleMobileMenu()" class="m-btn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+
+        <!-- Logo -->
+        <div class="mobile-logo">
+          <img
+            src="https://www.adsrsounds.com/wp-content/themes/adsr/img/logo-v2.svg"
+            alt="ADSR Logo"
+          />
+        </div>
+
+        <!-- Cart Button -->
+        <button onclick="toggleCart()" class="mobile-cart-btn">$16.00</button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="mobile-search">
+        <input type="text" placeholder="Search (Sounds) ..." />
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          ></path>
+        </svg>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu">
+        <div class="mobile-menu-wrapper">
+          <div class="mobile-menu-logo">
+            <img
+              src="https://www.adsrsounds.com/wp-content/themes/adsr/img/logo-v2.svg"
+              alt="ADSR Logo"
+            />
+            <button onclick="toggleMobileMenu()">
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="mobile-menu">
+            <button>SOUNDS</button>
+            <button>PLUGINS</button>
+            <button>COURSES</button>
+            <button>TUTORIALS</button>
+            <button>BUNDLES</button>
+            <button>SALE</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Desktop Navigation -->
+    <nav class="nav-main">
+      <div class="nav-wrapper">
+        <!-- Logo -->
+        <div class="nav-logo">
+          <img
+            src="https://www.adsrsounds.com/wp-content/themes/adsr/img/logo-v2.svg"
+            alt="ADSR Logo"
+          />
+        </div>
+
+        <!-- Search -->
+        <div class="nav-search">
+          <input type="text" placeholder="Search (Sounds) ..." class="" />
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </div>
+
+        <!-- Navigation Items -->
+        <div class="nav-items">
+          <div class="nav-sound">
+            <button class="nav-sound-item">SOUNDS</button>
+            <!-- Dropdown Menu -->
+            <div class="nav-dropdown">
+              <div class="nav-dropdown-wrapper">
+                <div class="nav-dropdown-wrapper-main">
+                  <!-- Left Side Buttons -->
+                  <div class="nav-dropdown-left">
+                    <button>
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                        ></path>
+                      </svg>
+                      Genre
+                    </button>
+                    <button>
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                        ></path>
+                      </svg>
+                      Formats
+                    </button>
+                    <button>
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z"
+                        ></path>
+                      </svg>
+                      Labels
+                    </button>
+                  </div>
+
+                  <!-- Right Side Grid -->
+                  <div class="nav-dropdown-right">
+                    <div class="nav-dropdown-right-grid">
+                      <div>
+                        <button>Acon Digital</button>
+                        <button>Acoustica</button>
+                        <button>ADSR</button>
+                        <button>Air Music Tech</button>
+                        <button>Akai</button>
+                        <button>Angelic Vibes</button>
+                        <button>Antares</button>
+                        <button>Apogee</button>
+                        <button>Applied Accoustic</button>
+                        <button>Aria Sounds</button>
+                        <button>Arturia</button>
+                        <button>Auburn</button>
+                      </div>
+                      <div>
+                        <button>Cubic Audio</button>
+                        <button>Cycles & Spots Software</button>
+                        <button>D16</button>
+                        <button>Dark Silence</button>
+                        <button>DDMF</button>
+                        <button>Denise Audio</button>
+                        <button>Deplike</button>
+                        <button>DHPlugins</button>
+                        <button>Diginois</button>
+                        <button>Digital Brain Instruments</button>
+                        <button>DiscoDSP</button>
+                        <button>DJ Swivel</button>
+                      </div>
+                      <div>
+                        <button>iZotope</button>
+                        <button>Kilohearts</button>
+                        <button>Klevgrand</button>
+                        <button>Korneff</button>
+                        <button>Krotos</button>
+                        <button>KV331</button>
+                        <button>LANDR</button>
+                        <button>LiveLoop</button>
+                        <button>Loot Audio</button>
+                        <button>Luftrum</button>
+                        <button>Lunacy Audio</button>
+                        <button>Magix</button>
+                      </div>
+                      <div>
+                        <button>Sampleson</button>
+                        <button>Saucey Audio</button>
+                        <button>Serato</button>
+                        <button>Shout Audio</button>
+                        <button>Signum Audio</button>
+                        <button>Sinevibes</button>
+                        <button>Sinuslabs</button>
+                        <button>Sonible</button>
+                        <button>Sonivox</button>
+                        <button>Sonnox</button>
+                        <button>Sound Particles</button>
+                        <button>Soundiron</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <button>PLUGINS</button>
+            <button>COURSES</button>
+            <button>TUTORIALS</button>
+            <button>BUNDLES</button>
+            <button>SALE</button>
+          </div>
+        </div>
+
+        <!-- User and Cart -->
+        <div class="nav-usercart">
+          <!-- User  -->
+          <div class="nav-user">
+            <button onclick="toggleUserMenu()" class="nav-user-icon">
+              <svg
+                class=""
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
+            </button>
+            <div id="userMenu">
+              <button>Create an Account</button>
+              <hr />
+              <button>Sign In</button>
+            </div>
+          </div>
+          <!-- Cart  -->
+          <div class="nav-cart">
+            <button onclick="toggleCart()" class="nav-price">$16.00</button>
+            <div id="cart">
+              <div class="nav-cart-header">
+                <h3 class="">Your Cart</h3>
+                <select class="">
+                  <option value="usd">USD</option>
+                  <option value="eur">EUR</option>
+                  <option value="gbp">GBP</option>
+                </select>
+              </div>
+
+              <div class="nav-cart-items">
+                <div class="nav-cart-item">
+                  <div
+                    class="nav-item-retro"
+                  ></div>
+                  <div class="nav-cart-item-text">
+                    <p class="nav-cart-item-text-title">
+                      RETROWAVE Sample Pack
+                    </p>
+                    <p class="nav-cart-item-text-subtitle">Premium Edition</p>
+                  </div>
+                  <div class="nav-cart-item-price">
+                    <span class="">$7.99</span>
+                    <button class="">
+                      <svg
+                        class=""
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="nav-cart-item">
+                  <div
+                    class="nav-item-drum"
+                  ></div>
+                  <div class="nav-cart-item-text">
+                    <p class="nav-cart-item-text-title">
+                      DRUM MACHINES Plugin
+                    </p>
+                    <p class="nav-cart-item-text-subtitle">Standard License</p>
+                  </div>
+                  <div class="nav-cart-item-price">
+                    <span class="">$4.99</span>
+                    <button class="">
+                      <svg
+                        class=""
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="nav-cart-item">
+                  <div
+                    class="nav-item-lofi"
+                  ></div>
+                  <div class="nav-cart-item-text">
+                    <p class="nav-cart-item-text-title">
+                      LOFI & SYNTHWAVE Collection
+                    </p>
+                    <p class="nav-cart-item-text-subtitle">Full Bundle</p>
+                  </div>
+                  <div class="nav-cart-item-price">
+                    <span class="">$3.02</span>
+                    <button class="">
+                      <svg
+                        class=""
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="nav-total-wrapper">
+                <div class="nav-subtotal">
+                  <h2 class="">Subtotal</h2>
+                  <span class="">$16.00</span>
+                </div>
+                <div class="nav-total">
+                  <span>Total</span>
+                  <span>$16.00</span>
+                </div>
+              </div>
+
+              <button class="nav-checkout">Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample Packs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="sample.js" defer></script>
+  </head>
+  <body class="bg-black text-white">
+    <div class="container mx-auto px-4 mb-16">
+      <!-- Heading -->
+      <div class="text-center mb-8">
+        <h2 class="text-4xl font-bold mb-2">Find your sound</h2>
+        <p class="text-xl text-zinc-400">
+          The latest sample & preset packs this week
+        </p>
+      </div>
+
+      <!-- Desktop Controls -->
+      <div class="hidden md:flex justify-between items-center mb-8">
+        <div class="flex gap-4">
+          <select
+            class="w-[180px] bg-zinc-900 border-none rounded-md px-3 py-2 text-white"
+          >
+            <option value="all">All Genres</option>
+            <option value="electronic">Electronic</option>
+            <option value="hiphop">Hip Hop</option>
+            <option value="pop">Pop</option>
+          </select>
+
+          <select
+            class="w-[180px] bg-zinc-900 border-none rounded-md px-3 py-2 text-white"
+          >
+            <option value="all">All Formats</option>
+            <option value="wav">WAV</option>
+            <option value="midi">MIDI</option>
+            <option value="preset">Presets</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="prevSet" class="p-2 rounded-full hover:bg-zinc-800">
+            <i data-lucide="chevron-left" class="h-4 w-4"></i>
+          </button>
+          <button id="nextSet" class="p-2 rounded-full hover:bg-zinc-800">
+            <i data-lucide="chevron-right" class="h-4 w-4"></i>
+          </button>
+          <button class="px-4 py-2 rounded-md hover:bg-zinc-800 ml-2">
+            See All
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Controls -->
+      <div class="flex md:hidden justify-between items-center mb-6">
+        <button id="prevMobile" class="p-2 rounded-full hover:bg-zinc-800">
+          <i data-lucide="chevron-left" class="h-4 w-4"></i>
+        </button>
+        <button class="px-4 py-2 rounded-md hover:bg-zinc-800">See All</button>
+        <button id="nextMobile" class="p-2 rounded-full hover:bg-zinc-800">
+          <i data-lucide="chevron-right" class="h-4 w-4"></i>
+        </button>
+      </div>
+
+      <!-- Desktop Grid View -->
+      <div
+        id="desktopGrid"
+        class="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+      ></div>
+
+      <!-- Mobile Single Item View -->
+      <div id="mobileView" class="md:hidden"></div>
+    </div>
+  </body>
+</html>
